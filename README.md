@@ -28,7 +28,7 @@ Both guix.scm and the channel provide `guile-lapack-git` package with the fresh 
 
 ## Names & How to Use The Library
 
-Most bindings follow the GSL names, except that `LAPACKE_` prefix is dropped.
+Most bindings follow the LAPACKE names, except that `LAPACKE_` prefix is dropped.
 
 Notice that this extremely succinct naming means that many symbols in
 the programs one writes (or even in standard Scheme, like `set!`) may

@@ -1,4 +1,4 @@
-(define-module (guile-gsl-package)
+(define-module (guile-lapack-package)
  #:use-module (gnu packages guile)
  #:use-module (gnu packages maths)
  #:use-module (guix packages)
