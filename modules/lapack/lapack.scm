@@ -100,12 +100,12 @@
 
 (define-syntax-rule (define-lapack-double name (arg type) ...)
   (define (name layout arg ...)
-    ((lapack-fn (symbol->string (quote double-name))
+    ((lapack-fn (symbol->string (quote name))
                 double (list int type ...) int)
      layout arg ...)))
 (define-syntax-rule (define-lapack-float name (arg type) ...)
   (define (name layout arg ...)
-    ((lapack-fn (symbol->string (quote double-name))
+    ((lapack-fn (symbol->string (quote name))
                 float (list int type ...) int)
      layout arg ...)))
 
