@@ -31,10 +31,10 @@ Both guix.scm and the channel provide `guile-lapack-git` package with the fresh 
 Most bindings follow the LAPACKE names, except that `LAPACKE_` prefix is dropped.
 
 Notice that this extremely succinct naming means that many symbols in
-the programs one writes (or even in standard Scheme, like `set!`) may
-(but unlikely due to extremely unreadable names LAPACK uses) collide
-with the names provided by this library. Thus, use the provided
-modules with suitable prefixes instead of importing them raw:
+the programs one writes may (but are unlikely to due to extremely
+unreadable names LAPACK uses) collide with the names provided by this
+library. Thus, use the provided modules with suitable prefixes instead
+of importing them raw:
 
 ``` scheme
 (use-modules ((lapack lapack) #:prefix lapack:))
