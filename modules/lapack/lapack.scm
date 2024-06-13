@@ -87,26 +87,22 @@
 (define (make-c-struct-1 type value)
   (make-c-struct (list type) (list value)))
 
-(define (lapack-fn name type args return)
+(define (lapack-fn name args return)
   (foreign-library-function
    lapack
-   (string-append "LAPACKE_"
-                  (if (= type double)
-                      "d"
-                      "s")
-                  name)
+   (string-append "LAPACKE_" name)
    #:return-type return
    #:arg-types args))
 
 (define-syntax-rule (define-lapack-double name (arg type) ...)
   (define (name layout arg ...)
     ((lapack-fn (symbol->string (quote name))
-                double (list int type ...) int)
+                (list int type ...) int)
      layout arg ...)))
 (define-syntax-rule (define-lapack-float name (arg type) ...)
   (define (name layout arg ...)
     ((lapack-fn (symbol->string (quote name))
-                float (list int type ...) int)
+                (list int type ...) int)
      layout arg ...)))
 
 (define-syntax-rule (define-lapack (float-name double-name)
