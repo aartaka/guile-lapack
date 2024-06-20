@@ -5,7 +5,8 @@ LAPACK functions in Guile, using the LAPACKE C layer as the
 target. Most functions are thin wrappers over LAPACKE, with a
 potential for a higher-level interface (sometime later?)
 
-Functions are added on an as needed basis (as used in [Mgamma](https://github.com/aartaka/mgamma))
+Functions are added on an as needed basis (as used in
+[Mgamma](https://github.com/aartaka/mgamma).) Contributions welcome!
 
 ## Installation
 
