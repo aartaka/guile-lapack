@@ -1,1 +1,1 @@
-/home/aartaka/git/guile-lapack/.guix/guile-lapack-package.scm
+.guix/guile-lapack-package.scm
