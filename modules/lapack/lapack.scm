@@ -17,6 +17,11 @@
             +lower+
             +transpose+
             +no-transpose+
+            +just-eigenvalues+
+            +eigenvalues-and-eigenvectors+
+            +range-all+
+            +range-v+
+            +range-i+
             ;; Functions (single+double)
             spotrf dpotrf
             spotrs dpotrs
@@ -32,6 +37,11 @@
 (define +lower+ (char->integer #\L))
 (define +transpose+ (char->integer #\T))
 (define +no-transpose+ (char->integer #\N))
+(define +just-eigenvalues+ (char->integer #\N))
+(define +eigenvalues-and-eigenvectors+ (char->integer #\V))
+(define +range-all+ (char->integer #\A))
+(define +range-v+ (char->integer #\V))
+(define +range-i+ (char->integer #\I))
 
 ;; FIXME: Returns a garbage-filled memory area
 (define* (2d-vector->lapack vector type #:optional (row-major? #t))
