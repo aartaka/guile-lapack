@@ -94,18 +94,26 @@
    #:return-type return
    #:arg-types args))
 
-(define-syntax-rule (define-lapack-double name documentation (arg type) ...)
-  (define (name layout arg ...)
-    documentation
-    ((lapack-fn (symbol->string (quote name))
-                (list int type ...) int)
-     layout arg ...)))
-(define-syntax-rule (define-lapack-float name documentation (arg type) ...)
-  (define (name layout arg ...)
-    documentation
-    ((lapack-fn (symbol->string (quote name))
-                (list int type ...) int)
-     layout arg ...)))
+(define-syntax define-lapack-double
+  (syntax-rules ()
+    ((_ name (whatever . whatever-rest) . args)
+     (syntax-error "define-lapack-double documentation should be a string"))
+    ((_ name documentation (arg type) ...)
+     (define (name layout arg ...)
+       documentation
+       ((lapack-fn (symbol->string (quote name))
+                   (list int type ...) int)
+        layout arg ...)))))
+(define-syntax define-lapack-float
+  (syntax-rules ()
+    ((_ name (whatever . whatever-rest) . args)
+     (syntax-error "define-lapack-float documentation should be a string"))
+    ((_ name documentation (arg type) ...)
+     (define (name layout arg ...)
+       documentation
+       ((lapack-fn (symbol->string (quote name))
+                   (list int type ...) int)
+        layout arg ...)))))
 
 (define-syntax-rule (define-lapack (float-name double-name)
                       documentation
