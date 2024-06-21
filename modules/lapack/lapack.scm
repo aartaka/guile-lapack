@@ -94,32 +94,41 @@
    #:return-type return
    #:arg-types args))
 
-(define-syntax-rule (define-lapack-double name (arg type) ...)
+(define-syntax-rule (define-lapack-double name documentation (arg type) ...)
   (define (name layout arg ...)
+    documentation
     ((lapack-fn (symbol->string (quote name))
                 (list int type ...) int)
      layout arg ...)))
-(define-syntax-rule (define-lapack-float name (arg type) ...)
+(define-syntax-rule (define-lapack-float name documentation (arg type) ...)
   (define (name layout arg ...)
+    documentation
     ((lapack-fn (symbol->string (quote name))
                 (list int type ...) int)
      layout arg ...)))
 
 (define-syntax-rule (define-lapack (float-name double-name)
+                      documentation
                       . args)
   (begin
-    (define-lapack-float float-name
+    (define-lapack-float float-name documentation
       . args)
-    (define-lapack-double double-name
+    (define-lapack-double double-name documentation
       . args)))
 
 (define-lapack (spotrf dpotrf)
+  "Cholesky factorization of a real symmetric positive definite matrix A"
   (uplo uint8) (n int) (a '*) (lda int))
 (define-lapack (spotrs dpotrs)
+  "Solve a system of linear equations A*X = B with a symmetric
+ positive definite matrix A using the Cholesky factorization
+ A = U**T*U or A = L*L**T computed by DPOTRF/SPOTRF"
   (uplo uint8) (n int) (nrhs int) (a '*) (lda int) (b '*) (ldb int))
 (define-lapack (ssyev dsyev)
+  "Compute the eigenvalues and, optionally, the left and/or right eigenvectors for SY matrices"
   (jobz uint8) (uplo uint8) (n int) (a '*) (lda int) (w '*))
 (define-lapack-float ssyevr
+  "SSYEVR computes the eigenvalues and, optionally, the left and/or right eigenvectors for SY matrices"
   (jobz uint8) (range uint8) (uplo uint8)
   (n int) (a '*) (lda int)
   (vl float) (vu float)
@@ -127,6 +136,7 @@
   (m '*) (w '*)
   (z '*) (ldz int) (isuppz '*))
 (define-lapack-double dsyevr
+  "DSYEVR computes the eigenvalues and, optionally, the left and/or right eigenvectors for SY matrices"
   (jobz uint8) (range uint8) (uplo uint8)
   (n int) (a '*) (lda int)
   (vl double) (vu double)
